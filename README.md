@@ -23,7 +23,7 @@ Code sample
 
 
 ```python
-    from lotame import Lotame
+    from lotame.lotame import Lotame
     l = Lotame(username='xxxx', password='yyyy')
 ```
 

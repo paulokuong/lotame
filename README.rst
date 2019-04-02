@@ -26,7 +26,7 @@ Code sample
 
 .. code:: python
 
-    from lotame import Lotame
+    from lotame.lotame import Lotame
     l = Lotame(username='xxxx', password='yyyy')
 
 | Search audiences
