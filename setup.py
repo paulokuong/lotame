@@ -5,7 +5,7 @@ with open('README.rst') as file:
     long_description = file.read()
 
 setup(name='lotame',
-      version='0.0.1',
+      version='1.0.0',
       description='LOTAME API Wrapper',
       install_requires=[
           'httplib2==0.10.3',
