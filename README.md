@@ -73,6 +73,11 @@ Getting behaviors under hierarchy tree at depth 2 child nodes.
     for j in l.get('hierarchies/525000', depth=2).json().get('nodes')[1].get('childNodes')]
 ```
 
+Getting report for audience profile
+```python
+    res = l.get('reports/audiences/{audience_id}/profile/type/{audience_profile_report_type_id}'.format(
+        audience_id=333333,audience_profile_report_type_id=6))
+```
 
 Contributors
 ------------

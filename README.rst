@@ -61,6 +61,31 @@ Code sample
         2215, [[6322283, 6322292, 1111760, 6322303], [6322283, 6322292, 1111760, 6322303]],
         'Testing out Lotame API 5', overlap=True)
 
+| Getting Reach Estimate (Note that description param is removed since it is not valid param)
+
+.. code:: python
+
+    audience_definition = l.get_create_audience_json(
+        'Lotame api test 8',
+        2215, [[6322283, 6322292, 1111760, 6322303], [6322283, 6322292, 1111760, 6322303]])
+    reach_estimates = l.post('audiences/reachEstimates', audience_definition).json()
+    reach_estimates_res = l.get('audiences/reachEstimates/{}'.format(reach_estimates.get('id')))
+    print(reach_estimates_res.json())
+
+| Getting behaviors under hierarchy tree at depth 2 child nodes.
+
+.. code:: python
+
+    [{'name':j['name'],'behavior_id':j['behaviorId']}
+    for j in l.get('hierarchies/525000', depth=2).json().get('nodes')[1].get('childNodes')]
+
+| Getting report for audience profile
+
+.. code:: python
+
+    res = l.get('reports/audiences/{audience_id}/profile/type/{audience_profile_report_type_id}'.format(
+        audience_id=333333,audience_profile_report_type_id=6))
+
 Contributors
 ------------
 
