@@ -6,52 +6,8 @@ Author: Paulo Kuong
 Email: pkuong80@gmail.com
 Python Version: 3.6.1
 
-Please refer to https://api.lotame.com/docs/#/
-to get all Endpoints.
-
-Example:
---------
-    from jfx_util.api.lotame import Lotame
-    l = Lotame()
-
-    # Search audiences
-    audiences = l.get('audiences/search', searchTerm='Age - ').json()['Audience']
-
-    # Get behavior 6322283
-    behavior = l.get('behaviors/{}'.format(6322283)).json()
-
-    # Create audience segment with 3 behaviors.
-    audience_definition = l.get_create_audience_json(
-        'Lotame api test 5',
-        2215, [[6322283, 6322292, 1111760, 6322303], [6322283, 6322292, 1111760, 6322303]],
-        'Testing out Lotame API 5')
-    post_response_json = l.post('audiences', audience_definition).json()
-    print(post_response_json)
-
-    # Create audience segment with 3 behaviors for (My Profile)
-    audience_definition = l.get_create_audience_json(
-        'Lotame api test 5',
-        2215, [[6322283, 6322292, 1111760, 6322303], [6322283, 6322292, 1111760, 6322303]],
-        'Testing out Lotame API 5', overlap=True)
-
-    # Create audience segment with 3 behaviors for (All Profile)
-    audience_definition = l.get_create_audience_json(
-        'Lotame api test 5',
-        2215, [[6322283, 6322292, 1111760, 6322303], [6322283, 6322292, 1111760, 6322303]],
-        'Testing out Lotame API 5', overlap=False)
-
-
-    # Getting Reach Estimate (Note that description param is removed since it is not valid param)
-    audience_definition = l.get_create_audience_json(
-        'Lotame api test 8',
-        2215, [[6322283, 6322292, 1111760, 6322303], [6322283, 6322292, 1111760, 6322303]])
-    reach_estimates = l.post('audiences/reachEstimates', audience_definition).json()
-    reach_estimates_res = l.get('audiences/reachEstimates/{}'.format(reach_estimates.get('id')))
-    print(reach_estimates_res.json())
-
-    # Getting behaviors under hierarchy tree at depth 2 child nodes.
-    [{'name':j['name'],'behavior_id':j['behaviorId']}
-    for j in l.get('hierarchies/525000', depth=2).json().get('nodes')[1].get('childNodes')]
+Please refer to https://api.lotame.com/docs/#/ to get all Endpoints.
+Please refer to README for examples.
 """
 from contextlib import contextmanager
 from functools import wraps
@@ -238,11 +194,15 @@ class Lotame(Audience):
             if end_point_with_params.find('?') == -1:
                 ticket_param = '?ticket={}'.format(service_ticket)
             if self._debug:
-                print('{}/{}{}'.format(self.API_URL,
-                                       end_point_with_params, ticket_param))
+                print('{}/{}{}'.format(
+                    self.API_URL,
+                    end_point_with_params, ticket_param))
 
+            print('{}/{}{}'.format(self.API_URL, end_point_with_params,
+                                   ticket_param))
             return requests.get(
-                '{}/{}{}'.format(self.API_URL, end_point_with_params, ticket_param))
+                '{}/{}{}'.format(self.API_URL, end_point_with_params,
+                                 ticket_param))
 
     @_retry_request_decorator(MAX_RETRIES)
     def post(self, end_point, params):

@@ -52,7 +52,7 @@ Code sample
     post_response_json = l.post('audiences', audience_definition).json()
     print(post_response_json)
 
- | Create audience segment with 3 behaviors for (My Profile)
+| Create audience segment with 3 behaviors for (My Profile)
 
 .. code:: python
 
