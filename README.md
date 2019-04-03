@@ -26,6 +26,16 @@ Code sample
     from lotame.lotame import Lotame
     l = Lotame(username='xxxx', password='yyyy')
 ```
+or setting the following environment variables:
+```
+LOTAME_USERNAME
+LOTAME_PASSWORD
+```
+then simply
+```
+    from lotame.lotame import Lotame
+    l = Lotame()
+```
 
 Search audiences
 ```python
